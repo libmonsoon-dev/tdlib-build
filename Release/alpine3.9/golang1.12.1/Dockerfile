@@ -11,6 +11,7 @@ RUN apk update \
         openssl-dev \
         gperf \
         zlib-dev \
+        readline-dev \
     && rm -rf /var/cache/apk/*=
 
 RUN git clone https://github.com/tdlib/td.git \
