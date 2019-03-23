@@ -1,4 +1,4 @@
-FROM alpine
+FROM golang:1.12.1-alpine3.9
 
 RUN apk update \
     && apk add --no-cache \
@@ -17,6 +17,6 @@ RUN git clone https://github.com/tdlib/td.git \
     && cd td \
     && mkdir build \
     && cd build \
-    && cmake -DCMAKE_BUILD_TYPE=Debug .. \
+    && cmake -DCMAKE_BUILD_TYPE=Release .. \
     && cmake --build . \
-    && make install -v
+    && make install -v 2>&1 | tee install.log

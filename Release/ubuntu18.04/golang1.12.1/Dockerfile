@@ -1,17 +1,19 @@
-FROM golang:1.12.1-alpine3.9
+FROM partlab/ubuntu-golang
 
-RUN apk update \
-    && apk add --no-cache \
+RUN apt update \
+    && apt upgrade -y \
+    && apt install -y \
         git \
         gcc \
         libc-dev \
         g++ \
         make \
         cmake \
-        openssl-dev \
+        libssl-dev \
         gperf \
-        zlib-dev \
-    && rm -rf /var/cache/apk/*=
+        zlib1g-dev \
+        libreadline-dev \
+    && rm -rf /var/cache/apt/*=
 
 RUN git clone https://github.com/tdlib/td.git \
     && cd td \
@@ -19,4 +21,4 @@ RUN git clone https://github.com/tdlib/td.git \
     && cd build \
     && cmake -DCMAKE_BUILD_TYPE=Release .. \
     && cmake --build . \
-    && make install
+    && make install -v 2>&1 | tee install.log

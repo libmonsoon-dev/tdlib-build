@@ -1,4 +1,4 @@
-FROM partlab/ubuntu-golang
+FROM ubuntu
 
 RUN apt update \
     && apt upgrade -y \
@@ -21,4 +21,4 @@ RUN git clone https://github.com/tdlib/td.git \
     && cd build \
     && cmake -DCMAKE_BUILD_TYPE=Release .. \
     && cmake --build . \
-    && make install
+    && make install -v 2>&1 | tee install.log
