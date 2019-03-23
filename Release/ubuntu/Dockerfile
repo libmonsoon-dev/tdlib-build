@@ -20,5 +20,5 @@ RUN git clone https://github.com/tdlib/td.git \
     && mkdir build \
     && cd build \
     && cmake -DCMAKE_BUILD_TYPE=Release .. \
-    && cmake --build . -- -j2 \
+    && cmake --build . \
     && make install
