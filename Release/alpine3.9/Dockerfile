@@ -20,4 +20,4 @@ RUN git clone https://github.com/tdlib/td.git \
     && cd build \
     && cmake -DCMAKE_BUILD_TYPE=Release .. \
     && cmake --build . \
-    && make install -v 2>&1 | tee install.log
+    && make install 2>&1 | tee install.log
