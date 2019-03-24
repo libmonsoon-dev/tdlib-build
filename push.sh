@@ -2,7 +2,7 @@
 
 . ./build.sh
 
-TAGS=( $(docker images ${REPO} | grep ${REPO} | awk '{ print $1":"$2 }') )
+TAGS=( $(docker images ${REPO} | grep ${REPO} | grep -v "<none>" | awk '{ print $1":"$2 }') )
 TAGS_LEN=${#TAGS[@]}
 
 for (( i=0; i<$TAGS_LEN; i++ ))

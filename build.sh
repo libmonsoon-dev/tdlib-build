@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 REPO='libmonsoondev/tdlib-build'
 
 DOCKER_FILES_COUNT=$(find . -name Dockerfile | wc -l)
