@@ -2,11 +2,12 @@
 
 . ./build.sh
 
-TAGS=( $(docker image ls | grep -E "^${REPO} " | awk '{ print $1":"$2 }') )
+TAGS=( $(docker images ${REPO} | grep ${REPO} | awk '{ print $1":"$2 }') )
+TAGS_LEN=${#TAGS[@]}
 
-for tag in "${TAGS[@]}"
+for (( i=0; i<$TAGS_LEN; i++ ))
 do
-    task="docker push ${tag}"
-    echo ${task}:
+    task="docker push ${TAGS[$i]}"
+    echo "${task} [$(($i+1))/${TAGS_LEN}]"
     ${task}
 done
