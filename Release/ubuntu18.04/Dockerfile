@@ -9,7 +9,7 @@ RUN apt update \
         g++ \
         make \
         cmake \
-        libssl-dev \
+        libssl-dev=1.1.0\* \
         gperf \
         zlib1g-dev \
         libreadline-dev \

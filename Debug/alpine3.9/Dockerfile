@@ -8,7 +8,7 @@ RUN apk update \
         g++ \
         make \
         cmake \
-        openssl-dev \
+        "openssl-dev>1.1" \
         gperf \
         zlib-dev \
         readline-dev \
