@@ -15,7 +15,7 @@ RUN apt update \
         libreadline-dev \
     && rm -rf /var/cache/apt/*=
 
-RUN git clone https://github.com/tdlib/td.git \
+RUN git clone --branch=v1.3.0 --depth=1 https://github.com/tdlib/td.git \
     && cd td \
     && mkdir build \
     && cd build \

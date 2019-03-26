@@ -14,7 +14,7 @@ RUN apk update \
         readline-dev \
     && rm -rf /var/cache/apk/*=
 
-RUN git clone https://github.com/tdlib/td.git \
+RUN git clone --branch=v1.3.0 --depth=1 https://github.com/tdlib/td.git \
     && cd td \
     && mkdir build \
     && cd build \
