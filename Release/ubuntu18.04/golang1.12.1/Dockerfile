@@ -1,13 +1,15 @@
 FROM libmonsoondev/tdlib-build:ubuntu18.04
 
+LABEL GOLANG_VERSION=1.12.1
+
+ENV GOLANG_VERSION 1.12.1
+
 # gcc for cgo
 RUN apt install -y --no-install-recommends \
         wget \
 		libc6-dev \
 		pkg-config \
 	&& rm -rf /var/lib/apt/lists/*
-
-ENV GOLANG_VERSION 1.12.1
 
 RUN set -eux; \
 	\

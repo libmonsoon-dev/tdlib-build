@@ -1,5 +1,9 @@
 FROM ubuntu:18.04
 
+LABEL maintainer="Daniil Stepanenko <daniil.stepanenko.96@gmail.com>" \
+    CMAKE_BUILD_TYPE=Release \
+    "tdlib release"=v1.3.0
+
 RUN apt update \
     && apt install -y \
         git \

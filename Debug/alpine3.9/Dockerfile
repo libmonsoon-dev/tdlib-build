@@ -1,5 +1,9 @@
 FROM alpine:3.9
 
+LABEL maintainer="Daniil Stepanenko <daniil.stepanenko.96@gmail.com>" \
+    CMAKE_BUILD_TYPE=Debug \
+    "tdlib release"=v1.3.0
+
 RUN apk update \
     && apk add --no-cache \
         git \
