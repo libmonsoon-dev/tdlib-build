@@ -2,73 +2,72 @@
 
 set -e
 
-REPO='libmonsoondev/tdlib-build'
+. constants.sh
 
-DOCKER_FILES_COUNT=$(find . -name Dockerfile | wc -l)
 CURRENT=1
 
 echo "Building... [$((CURRENT++))/${DOCKER_FILES_COUNT}]"
 docker build \
-    -t ${REPO} \
-    -t ${REPO}:alpine \
-    -t ${REPO}:alpine3.9 \
+    -t "${REPO}" \
+    -t "${REPO}:${ALPINE}" \
+    -t "${REPO}:${ALPINE3_9}" \
     --pull \
     ./Release/alpine3.9/
 
 echo "Building... [$((CURRENT++))/${DOCKER_FILES_COUNT}]"
 docker build \
-    -t ${REPO}:alpine-golang \
-    -t ${REPO}:alpine-golang1.12.1 \
-    -t ${REPO}:alpine3.9-golang \
-    -t ${REPO}:alpine3.9-golang1.12.1 \
+    -t "${REPO}:${ALPINE_GOLANG}" \
+    -t "${REPO}:${ALPINE_GOLANG1_12_1}" \
+    -t "${REPO}:${ALPINE3_9_GOLANG}" \
+    -t "${REPO}:${ALPINE3_9_GOLANG1_12_1}" \
     --pull \
     ./Release/alpine3.9/golang1.12.1/
 
 echo "Building... [$((CURRENT++))/${DOCKER_FILES_COUNT}]"
 docker build \
-    -t ${REPO}:ubuntu \
-    -t ${REPO}:ubuntu18.04 \
+    -t "${REPO}:${UBUNTU}" \
+    -t "${REPO}:${UBUNTU18_04}" \
     --pull \
     ./Release/ubuntu18.04
 
 echo "Building... [$((CURRENT++))/${DOCKER_FILES_COUNT}]"
 docker build \
-    -t ${REPO}:ubuntu-golang \
-    -t ${REPO}:ubuntu-golang1.12.1 \
-    -t ${REPO}:ubuntu18.04-golang \
-    -t ${REPO}:ubuntu18.04-golang1.12.1 \
+    -t "${REPO}:${UBUNTU_GOLANG}" \
+    -t "${REPO}:${UBUNTU_GOLANG1_12_1}" \
+    -t "${REPO}:${UBUNTU18_04_GOLANG}" \
+    -t "${REPO}:${UBUNTU18_04_GOLANG1_12_1}" \
     --pull \
     ./Release/ubuntu18.04/golang1.12.1/
 
 echo "Building... [$((CURRENT++))/${DOCKER_FILES_COUNT}]"
 docker build \
-    -t ${REPO}:debug \
-    -t ${REPO}:debug-alpine \
-    -t ${REPO}:debug-alpine3.9 \
+    -t "${REPO}:${DEBUG}" \
+    -t "${REPO}:${DEBUG_ALPINE}" \
+    -t "${REPO}:${DEBUG_ALPINE3_9}" \
     --pull \
     ./Debug/alpine3.9/
 
 echo "Building... [$((CURRENT++))/${DOCKER_FILES_COUNT}]"
 docker build \
-    -t ${REPO}:debug-alpine-golang \
-    -t ${REPO}:debug-alpine-golang1.12.1 \
-    -t ${REPO}:debug-alpine3.9-golang \
-    -t ${REPO}:debug-alpine3.9-golang1.12.1 \
+    -t "${REPO}:${DEBUG_ALPINE_GOLANG}" \
+    -t "${REPO}:${DEBUG_ALPINE_GOLANG1_12_1}" \
+    -t "${REPO}:${DEBUG_ALPINE3_9_GOLANG}" \
+    -t "${REPO}:${DEBUG_ALPINE3_9_GOLANG1_12_1}" \
     --pull \
     ./Debug/alpine3.9/golang1.12.1/
 
 echo "Building... [$((CURRENT++))/${DOCKER_FILES_COUNT}]"
 docker build \
-    -t ${REPO}:debug-ubuntu \
-    -t ${REPO}:debug-ubuntu18.04 \
+    -t "${REPO}:${DEBUG_UBUNTU}" \
+    -t "${REPO}:${DEBUG_UBUNTU18_04}" \
     --pull \
     ./Debug/ubuntu18.04
 
 echo "Building... [$((CURRENT++))/${DOCKER_FILES_COUNT}]"
 docker build \
-    -t ${REPO}:debug-ubuntu-golang \
-    -t ${REPO}:debug-ubuntu-golang1.12.1 \
-    -t ${REPO}:debug-ubuntu18.04-golang \
-    -t ${REPO}:debug-ubuntu18.04-golang1.12.1 \
+    -t "${REPO}:${DEBUG_UBUNTU_GOLANG}" \
+    -t "${REPO}:${DEBUG_UBUNTU_GOLANG1_12_1}" \
+    -t "${REPO}:${DEBUG_UBUNTU18_04_GOLANG}" \
+    -t "${REPO}:${DEBUG_UBUNTU18_04_GOLANG1_12_1}" \
     --pull \
     ./Debug/ubuntu18.04/golang1.12.1/
