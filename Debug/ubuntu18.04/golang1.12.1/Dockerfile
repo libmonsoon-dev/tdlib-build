@@ -4,8 +4,8 @@ LABEL GOLANG_VERSION=1.12.1
 
 ENV GOLANG_VERSION 1.12.1
 
-# gcc for cgo
-RUN apt install -y --no-install-recommends \
+RUN apt update \
+    && apt install -y --no-install-recommends \
         wget \
 		libc6-dev \
 		pkg-config \
@@ -13,7 +13,6 @@ RUN apt install -y --no-install-recommends \
 
 RUN set -eux; \
 	\
-# this "case" statement is generated via "update.sh"
 	dpkgArch="$(dpkg --print-architecture)"; \
 	case "${dpkgArch##*-}" in \
 		amd64) goRelArch='linux-amd64'; goRelSha256='2a3fdabf665496a0db5f41ec6af7a9b15a49fbe71a85a50ca38b1f13a103aeec' ;; \
