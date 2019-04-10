@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. pull.sh
+
 set -e
 
 . constants.sh
