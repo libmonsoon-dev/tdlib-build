@@ -59,7 +59,8 @@ RUN mkdir /opt/tdlib/build_native \
         -DCMAKE_BUILD_TYPE=Release \
         -DZLIB_LIBRARY=/opt/zlib \
         -DZLIB_INCLUDE_DIR=/opt/zlib \
-    && cmake --build . --target prepare_cross_compiling
+    && cmake --build . --target prepare_cross_compiling \
+    && cmake --build . --target generate_mime_types_gperf
 
 ENV ANDROID_API 21
 ENV CC armv7a-linux-androideabi21-clang
@@ -76,6 +77,9 @@ RUN mkdir /opt/tdlib/build \
     && cmake .. \
         -DCMAKE_BUILD_TYPE=Release \
         -DZLIB_LIBRARY=/opt/zlib \
-    && cp -r ../build_native/tdutils . \
+    && cp -r ../build_native/tdutils/generate ./tdutils \
     && cp -r ../build_native/td/generate ./td \
-    && cmake --build . --target tdjson_static -- -j5
+    && cmake --build . --target tdjson_static
+
+RUN cd /opt/tdlib/build \
+    && cmake --build .  --target tdjson
