@@ -20,13 +20,13 @@ RUN wget -q http://zlib.net/zlib-1.2.11.tar.gz && \
     mv zlib-1.2.11 /opt/zlib && \
     rm zlib-1.2.11.tar.gz
 
-ENV CC aarch64-linux-androideabi21-clang
-ENV CXX aarch64-linux-androideabi21-clang++
-ENV RANLIB aarch64-linux-androideabi-ranlib
-ENV LD aarch64-linux-androideabi-ld
-ENV AR aarch64-linux-androideabi-ar
+ENV CC aarch64-linux-android21-clang
+ENV CXX aarch64-linux-android21-clang++
+ENV RANLIB aarch64-linux-android-ranlib
+ENV LD aarch64-linux-android-ld
+ENV AR aarch64-linux-android-ar
 ENV ARFLAGS cr
-ENV CHOST aarch64-linux-androideabi
+ENV CHOST aarch64-linux-android
 
 RUN cd /opt/zlib && \
     ./configure && \
@@ -63,13 +63,13 @@ RUN mkdir /opt/tdlib/build_native \
     && cmake --build . --target generate_mime_types_gperf
 
 ENV ANDROID_API 21
-ENV CC aarch64-linux-androideabi21-clang
-ENV CXX aarch64-linux-androideabi21-clang++
-ENV RANLIB aarch64-linux-androideabi-ranlib
-ENV LD aarch64-linux-androideabi-ld
-ENV AR aarch64-linux-androideabi-ar
+ENV CC aarch64-linux-android21-clang
+ENV CXX aarch64-linux-android21-clang++
+ENV RANLIB aarch64-linux-android-ranlib
+ENV LD aarch64-linux-android-ld
+ENV AR aarch64-linux-android-ar
 ENV ARFLAGS cr
-ENV CHOST aarch64-linux-androideabi
+ENV CHOST aarch64-linux-android
 ENV OPENSSL_ROOT_DIR /opt/openssl
 
 RUN mkdir /opt/tdlib/build \

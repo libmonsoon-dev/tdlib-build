@@ -24,7 +24,7 @@ ENV CC armv7a-linux-androideabi21-clang
 ENV CXX armv7a-linux-androideabi21-clang++
 ENV RANLIB armv7a-linux-androideabi-ranlib
 ENV LD armv7a-linux-androideabi-ld
-ENV AR armv7a-linux-androideabi-ar
+ENV AR arm-linux-androideabi-ar
 ENV ARFLAGS cr
 ENV CHOST armv7a-linux-androideabi
 
@@ -67,7 +67,7 @@ ENV CC armv7a-linux-androideabi21-clang
 ENV CXX armv7a-linux-androideabi21-clang++
 ENV RANLIB armv7a-linux-androideabi-ranlib
 ENV LD armv7a-linux-androideabi-ld
-ENV AR armv7a-linux-androideabi-ar
+ENV AR arm-linux-androideabi-ar
 ENV ARFLAGS cr
 ENV CHOST armv7a-linux-androideabi
 ENV OPENSSL_ROOT_DIR /opt/openssl
