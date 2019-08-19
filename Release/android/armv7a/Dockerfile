@@ -79,7 +79,5 @@ RUN mkdir /opt/tdlib/build \
         -DZLIB_LIBRARY=/opt/zlib \
     && cp -r ../build_native/tdutils/generate ./tdutils \
     && cp -r ../build_native/td/generate ./td \
-    && cmake --build . --target tdjson_static
-
-RUN cd /opt/tdlib/build \
+    && cmake --build . --target tdjson_static \
     && cmake --build .  --target tdjson
