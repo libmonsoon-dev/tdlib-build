@@ -12,7 +12,7 @@ RUN wget -q https://www.openssl.org/source/openssl-1.1.1c.tar.gz && \
     rm openssl-1.1.1c.tar.gz
 
 RUN cd /opt/openssl && \
-    ./Configure android-arm -D__ANDROID_API__=$ANDROID_API && \
+    ./Configure android-arm64 -D__ANDROID_API__=$ANDROID_API && \
     make
 
 RUN wget -q http://zlib.net/zlib-1.2.11.tar.gz && \
@@ -20,13 +20,13 @@ RUN wget -q http://zlib.net/zlib-1.2.11.tar.gz && \
     mv zlib-1.2.11 /opt/zlib && \
     rm zlib-1.2.11.tar.gz
 
-ENV CC armv7a-linux-androideabi21-clang
-ENV CXX armv7a-linux-androideabi21-clang++
-ENV RANLIB armv7a-linux-androideabi-ranlib
-ENV LD armv7a-linux-androideabi-ld
-ENV AR armv7a-linux-androideabi-ar
+ENV CC aarch64-linux-androideabi21-clang
+ENV CXX aarch64-linux-androideabi21-clang++
+ENV RANLIB aarch64-linux-androideabi-ranlib
+ENV LD aarch64-linux-androideabi-ld
+ENV AR aarch64-linux-androideabi-ar
 ENV ARFLAGS cr
-ENV CHOST armv7a-linux-androideabi
+ENV CHOST aarch64-linux-androideabi
 
 RUN cd /opt/zlib && \
     ./configure && \
@@ -63,13 +63,13 @@ RUN mkdir /opt/tdlib/build_native \
     && cmake --build . --target generate_mime_types_gperf
 
 ENV ANDROID_API 21
-ENV CC armv7a-linux-androideabi21-clang
-ENV CXX armv7a-linux-androideabi21-clang++
-ENV RANLIB armv7a-linux-androideabi-ranlib
-ENV LD armv7a-linux-androideabi-ld
-ENV AR armv7a-linux-androideabi-ar
+ENV CC aarch64-linux-androideabi21-clang
+ENV CXX aarch64-linux-androideabi21-clang++
+ENV RANLIB aarch64-linux-androideabi-ranlib
+ENV LD aarch64-linux-androideabi-ld
+ENV AR aarch64-linux-androideabi-ar
 ENV ARFLAGS cr
-ENV CHOST armv7a-linux-androideabi
+ENV CHOST aarch64-linux-androideabi
 ENV OPENSSL_ROOT_DIR /opt/openssl
 
 RUN mkdir /opt/tdlib/build \
