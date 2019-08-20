@@ -1,4 +1,4 @@
-FROM libmonsoondev/andoid-ndk:r20-ubuntu AS deps
+FROM libmonsoondev/android:ndk-r20 AS deps
 
 ENV CC clang
 ENV ANDROID_API 21
@@ -32,7 +32,7 @@ RUN cd /opt/zlib && \
     ./configure && \
     make
 
-FROM libmonsoondev/andoid-ndk:r20-ubuntu
+FROM libmonsoondev/android:ndk-r20
 
 RUN apt update \
     && apt install -y \
@@ -76,7 +76,8 @@ RUN mkdir /opt/tdlib/build \
     && cd /opt/tdlib/build \
     && cmake .. \
         -DCMAKE_BUILD_TYPE=Release \
-        -DZLIB_LIBRARY=/opt/zlib \
+        -DZLIB_LIBRARY=/opt/zlib/libz.a \
+        -DZLIB_INCLUDE_DIR=/opt/zlib \
     && cp -r ../build_native/tdutils/generate ./tdutils \
     && cp -r ../build_native/td/generate ./td \
     && cmake --build . --target tdjson_static
