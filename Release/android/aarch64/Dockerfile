@@ -63,21 +63,19 @@ RUN mkdir /opt/tdlib/build_native \
     && cmake --build . --target generate_mime_types_gperf
 
 ENV ANDROID_API 21
-ENV CC aarch64-linux-android21-clang
-ENV CXX aarch64-linux-android21-clang++
-ENV RANLIB aarch64-linux-android-ranlib
-ENV LD aarch64-linux-android-ld
-ENV AR aarch64-linux-android-ar
-ENV ARFLAGS cr
-ENV CHOST aarch64-linux-android
 ENV OPENSSL_ROOT_DIR /opt/openssl
 
 RUN mkdir /opt/tdlib/build \
     && cd /opt/tdlib/build \
     && cmake .. \
+        -DCMAKE_TOOLCHAIN_FILE="${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake" \
+        -DANDROID_PLATFORM=android-${ANDROID_API} \
+        -DANDROID_ABI=arm64-v8a \
+        -DANDROID_TOOLCHAIN=clang \
         -DCMAKE_BUILD_TYPE=Release \
         -DZLIB_LIBRARY=/opt/zlib/libz.a \
         -DZLIB_INCLUDE_DIR=/opt/zlib \
-    && cp -r ../build_native/tdutils/generate ./tdutils \
-    && cp -r ../build_native/td/generate ./td \
+        -DOPENSSL_CRYPTO_LIBRARY=${OPENSSL_ROOT_DIR}/libcrypto.a \
+        -DOPENSSL_SSL_LIBRARY=${OPENSSL_ROOT_DIR}/libssl.a \
+        -DOPENSSL_INCLUDE_DIR=${OPENSSL_ROOT_DIR}/include/ \
     && cmake --build . --target tdjson_static

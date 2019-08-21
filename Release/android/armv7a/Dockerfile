@@ -1,7 +1,7 @@
 FROM libmonsoondev/android:ndk-r20 AS deps
 
 ENV CC clang
-ENV ANDROID_API 21
+ENV ANDROID_API 16
 
 RUN apt update \
     && apt install -y make libfindbin-libs-perl
@@ -62,22 +62,20 @@ RUN mkdir /opt/tdlib/build_native \
     && cmake --build . --target prepare_cross_compiling \
     && cmake --build . --target generate_mime_types_gperf
 
-ENV ANDROID_API 21
-ENV CC armv7a-linux-androideabi21-clang
-ENV CXX armv7a-linux-androideabi21-clang++
-ENV RANLIB armv7a-linux-androideabi-ranlib
-ENV LD armv7a-linux-androideabi-ld
-ENV AR arm-linux-androideabi-ar
-ENV ARFLAGS cr
-ENV CHOST armv7a-linux-androideabi
+ENV ANDROID_API 16
 ENV OPENSSL_ROOT_DIR /opt/openssl
 
 RUN mkdir /opt/tdlib/build \
     && cd /opt/tdlib/build \
     && cmake .. \
+        -DCMAKE_TOOLCHAIN_FILE="${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake" \
+        -DANDROID_PLATFORM=android-${ANDROID_API} \
+        -DANDROID_ABI=armeabi-v7a \
+        -DANDROID_TOOLCHAIN=clang \
         -DCMAKE_BUILD_TYPE=Release \
         -DZLIB_LIBRARY=/opt/zlib/libz.a \
         -DZLIB_INCLUDE_DIR=/opt/zlib \
-    && cp -r ../build_native/tdutils/generate ./tdutils \
-    && cp -r ../build_native/td/generate ./td \
+        -DOPENSSL_CRYPTO_LIBRARY=${OPENSSL_ROOT_DIR}/libcrypto.a \
+        -DOPENSSL_SSL_LIBRARY=${OPENSSL_ROOT_DIR}/libssl.a \
+        -DOPENSSL_INCLUDE_DIR=${OPENSSL_ROOT_DIR}/include/ \
     && cmake --build . --target tdjson_static
