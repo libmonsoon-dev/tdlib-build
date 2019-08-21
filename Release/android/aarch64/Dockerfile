@@ -57,7 +57,7 @@ RUN mkdir /opt/tdlib/build_native \
     && cd /opt/tdlib/build_native \
     && cmake .. \
         -DCMAKE_BUILD_TYPE=Release \
-        -DZLIB_LIBRARY=/opt/zlib \
+        -DZLIB_LIBRARY=/opt/zlib/libz.a \
         -DZLIB_INCLUDE_DIR=/opt/zlib \
     && cmake --build . --target prepare_cross_compiling \
     && cmake --build . --target generate_mime_types_gperf
